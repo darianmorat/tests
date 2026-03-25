@@ -1,0 +1,81 @@
+/* ========= */
+/* VARIABLES */
+/* ========= */
+:root {
+   --main-font: "Arial";
+   --main-font-weight: bold;
+   --main-font-size: 18px;
+
+   --operator: rgb(46, 56, 250);
+   --number: rgb(84, 87, 99);
+}
+
+
+/* ======= */
+/* GENERAL */
+/* ======= */
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   display: flex;
+   align-items: center;
+   height: 100vh;
+   background-color: rgb(170, 170, 236);
+}
+
+.container {
+   background-color: rgb(227, 227, 227);
+   border: 5px solid black;
+   border-radius: 10px;
+   padding: 20px;
+   width: 350px;
+   height: auto;
+   margin: 0 auto;
+   box-shadow: 4px 4px 8px 4px rgb(40, 43, 77);
+}
+
+.display {
+   background-color: rgba(0, 0, 0, 0.708);
+   width: 100%;
+   height: 100px;
+   margin-bottom: 20px;
+   border: none;
+   text-align: right;
+   padding: 20px;
+   color: white;
+}
+
+.buttons {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   justify-items: center;
+   gap: 8px;
+}
+
+button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 60px;
+   width: 100%;
+   border-radius: 8px;
+   cursor: pointer;
+   background-color: #c3c3c3cd;
+   border: none;
+   color: var(--number);
+}
+
+.display,
+button {
+   font-family: var(--main-font);
+   font-weight: var(--main-font-weight);
+   font-size: var(--main-font-size);
+}
+
+.operator {
+   color: var(--operator);
+}

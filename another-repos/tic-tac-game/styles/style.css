@@ -1,0 +1,93 @@
+* {
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+   height: 100%;
+}
+
+body {
+   height: 100%;
+   display: grid;
+   grid-template-rows: 100px 1fr 80px;
+}
+
+/* SHARED PROPERTIES */
+.header,
+footer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: black;
+   color: white;
+}
+
+/* MAIN */
+.main {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   background-color: #d6d6d6;
+}
+
+.select_mark {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-template-rows: 1fr 1fr;
+   align-items: center;
+   justify-content: center;
+   margin: 10px 0 30px 0;
+   width: 300px;
+   gap: 5px;
+   text-align: center;
+}
+
+.select_mark>.mark_text {
+   grid-column: span 2;
+   grid-row: 1;
+}
+
+.select_mark>button {
+   grid-row: 2;
+   padding: 5px;
+   width: 100%;
+   margin: auto;
+   border: none;
+   cursor: pointer;
+}
+
+button:disabled {
+   background-color: rgb(162, 162, 162);
+}
+
+/* This button change depending of the player:
+Change the bc to the current player keeping the other disabled */
+
+.selected {
+   background-color: rgb(55, 144, 76) !important;
+   color: white;
+}
+
+.game_board {
+   width: 400px;
+   height: 400px;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-rows: 1fr 1fr 1fr;
+   margin: auto;
+}
+
+.game_board>button {
+   border: 3px solid #d6d6d6;
+   border-radius: 0;
+   cursor: pointer;
+}
+
+.game_board>button:hover {
+   background-color: #ffffff
+}
+
+.game_board>button:active {
+   background-color: #eaeaea;
+}
