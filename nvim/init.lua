@@ -2,7 +2,7 @@
 -- TITLE: Options
 -- ======================================================================================
 
--- Faster loading
+-- Faster startup
 vim.loader.enable()
 
 -- Basic settings
@@ -179,7 +179,7 @@ vim.pack.add({
    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
    { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
    { src = "https://github.com/L3MON4D3/LuaSnip" },
-   { src = "https://github.com/saghen/blink.cmp", version = "1.*" },
+   { src = "https://github.com/saghen/blink.cmp" },
    { src = "https://github.com/neovim/nvim-lspconfig" },
    { src = "https://github.com/stevearc/conform.nvim" },
 })
@@ -577,15 +577,6 @@ vim.diagnostic.config({
    update_in_insert = false,
    jump = { float = true },
 })
-
--- what does this? it seems is alrady active by default?
--- vim.api.nvim_create_autocmd("LspAttach", {
---    callback = function(args)
---       vim.lsp.document_color.enable(true, args.buf, {
---          style = "background",
---       })
---    end,
--- })
 
 vim.lsp.config("*", {})
 vim.lsp.enable({
