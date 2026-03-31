@@ -166,20 +166,20 @@ vim.api.nvim_create_autocmd("PackChanged", {
 vim.pack.add({
    { src = "https://github.com/darianmorat/gruvdark.nvim" },
    { src = "https://github.com/stevearc/oil.nvim" },
-   -- { src = "https://github.com/windwp/nvim-ts-autotag" }, -- should I remove?
-   -- { src = "https://github.com/windwp/nvim-autopairs" }, -- should I remove?
-   -- { src = "https://github.com/kylechui/nvim-surround", version = vim.version.range("*") }, -- should I remove?
-   -- { src = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring" },
-   -- { src = "https://github.com/numToStr/Comment.nvim" },
-   { src = "https://github.com/jake-stewart/multicursor.nvim", version = "1.0" },
-   -- { src = "https://github.com/mbbill/undotree" },
+   { src = "https://github.com/windwp/nvim-ts-autotag" },
+   { src = "https://github.com/windwp/nvim-autopairs" },
+   { src = "https://github.com/kylechui/nvim-surround" },
+   { src = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring" },
+   { src = "https://github.com/numToStr/Comment.nvim" },
+   { src = "https://github.com/jake-stewart/multicursor.nvim" },
+   { src = "https://github.com/mbbill/undotree" },
    { src = "https://github.com/folke/flash.nvim" },
    { src = "https://github.com/ibhagwan/fzf-lua" },
    { src = "https://github.com/lewis6991/gitsigns.nvim" },
-   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
+   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
    { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
    { src = "https://github.com/L3MON4D3/LuaSnip" },
-   { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
+   { src = "https://github.com/saghen/blink.cmp", version = "1.*" },
    { src = "https://github.com/neovim/nvim-lspconfig" },
    { src = "https://github.com/stevearc/conform.nvim" },
 })
@@ -188,10 +188,13 @@ vim.pack.add({
 -- TITLE: Extra Install
 -- ======================================================================================
 
--- conform.nvim:
+-- treesitter (parser compiler):
+-- sudo pacman -S tree-sitter-cli
+
+-- conform.nvim (formatters):
 -- sudo pacman -S prettier stylua python-black
 
--- nvim-lspconfig:
+-- nvim-lspconfig (language servers):
 -- sudo pacman -S typescript-language-server
 -- sudo pacman -S pyright
 -- sudo pacman -S \
@@ -262,8 +265,8 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- autopairs & autotags
--- require("nvim-autopairs").setup({})
--- require("nvim-ts-autotag").setup({})
+require("nvim-autopairs").setup({})
+require("nvim-ts-autotag").setup({})
 
 -- multicursor
 local mc = require("multicursor-nvim")
@@ -308,6 +311,14 @@ vim.keymap.set("n", "<esc>", function()
    end
 end)
 
+-- undotree
+vim.g.undotree_WindowLayout = 3
+vim.g.undotree_SplitWidth = 38
+vim.g.undotree_ShortIndicators = 0
+vim.g.undotree_DiffAutoOpen = 0
+
+vim.keymap.set("n", "<leader>tu", "<cmd>UndotreeToggle<CR><cmd>UndotreeFocus<CR>")
+
 -- flash.nvim
 require("flash").setup({
    highlight = { backdrop = true },
@@ -324,52 +335,55 @@ vim.keymap.set({ "n", "x", "o" }, "S", function()
 end)
 
 -- Comment
--- require("ts_context_commentstring").setup({})
--- require("Comment").setup({
---    pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
--- })
---
--- vim.keymap.set("n", "<leader>cc", "gcc", { remap = true })
--- vim.keymap.set("n", "<leader>cb", "gbc", { remap = true })
--- vim.keymap.set("n", "<leader>ca", "gcA", { remap = true })
--- vim.keymap.set("n", "<leader>co", "gco", { remap = true })
--- vim.keymap.set("n", "<leader>cO", "gcO", { remap = true })
---
--- vim.keymap.set("v", "<leader>c", "gc", { remap = true })
--- vim.keymap.set("v", "<leader>b", "gb", { remap = true })
+require("ts_context_commentstring").setup({
+   enable_autocmd = false,
+})
 
--- treesiter
-require("nvim-treesitter.configs").setup({
-   auto_install = true,
-   ensure_installed = {
-      "javascript",
-      "typescript",
-      "tsx",
-      "html",
-      "css",
-      "sql",
-      "json",
-      "jsonc",
-      "diff",
-      "markdown",
-      "markdown_inline",
-      "yaml",
-      "bash",
-      "query",
-      "regex",
-      "python",
-      "lua",
-      "vim",
-      "vimdoc",
-   },
-   indent = { enable = false },
-   highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = { "markdown" },
-      disable = function(_, bufnr) -- Disable for files with +10K lines
-         return vim.api.nvim_buf_line_count(bufnr) > 10000
-      end,
-   },
+require("Comment").setup({
+   pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+})
+
+vim.keymap.set("n", "<leader>cc", "gcc", { remap = true })
+vim.keymap.set("n", "<leader>cb", "gbc", { remap = true })
+vim.keymap.set("n", "<leader>ca", "gcA", { remap = true })
+vim.keymap.set("n", "<leader>co", "gco", { remap = true })
+vim.keymap.set("n", "<leader>cO", "gcO", { remap = true })
+
+vim.keymap.set("v", "<leader>c", "gc", { remap = true })
+vim.keymap.set("v", "<leader>b", "gb", { remap = true })
+
+-- treesitter
+local nts = require("nvim-treesitter")
+nts.install({
+   "javascript",
+   "typescript",
+   "tsx",
+   "html",
+   "css",
+   "lua",
+   "python",
+   "json",
+   "yaml",
+   "bash",
+   "vim",
+   "vimdoc",
+   "markdown",
+   "markdown_inline",
+   "diff",
+   "sql",
+   "query",
+   "regex",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+   callback = function(args)
+      local lang = vim.treesitter.language.get_lang(args.match)
+      if lang and vim.treesitter.language.add(lang) then
+         if vim.api.nvim_buf_line_count(args.buf) <= 10000 then
+            vim.treesitter.start()
+         end
+      end
+   end,
 })
 
 -- fzf.lua
@@ -509,6 +523,9 @@ require("ibl").setup({
 -- blink & luasnip
 require("luasnip").config.setup({})
 require("blink.cmp").setup({
+   fuzzy = {
+      implementation = "lua",
+   },
    snippets = {
       preset = "luasnip",
    },
