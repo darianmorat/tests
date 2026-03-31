@@ -314,10 +314,9 @@ end)
 -- undotree
 vim.g.undotree_WindowLayout = 3
 vim.g.undotree_SplitWidth = 38
-vim.g.undotree_ShortIndicators = 0
-vim.g.undotree_DiffAutoOpen = 0
+vim.g.undotree_SetFocusWhenToggle = 1
 
-vim.keymap.set("n", "<leader>tu", "<cmd>UndotreeToggle<CR><cmd>UndotreeFocus<CR>")
+vim.keymap.set("n", "<leader>tu", "<cmd>UndotreeToggle<CR>")
 
 -- flash.nvim
 require("flash").setup({
