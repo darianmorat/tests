@@ -2,71 +2,51 @@
 -- TITLE: Options
 -- ======================================================================================
 
--- Faster startup
 vim.loader.enable()
 
--- Basic settings
+vim.g.mapleader = " "
+vim.o.winborder = "single"
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
 vim.opt.number = true
 vim.opt.cursorline = true
-vim.opt.scrolloff = 6
-vim.opt.sidescrolloff = 6
 vim.opt.wrap = false
 
--- Spell settings
-vim.opt.spelllang = "en_us"
-vim.opt.spelloptions = "camel"
+vim.opt.scrolloff = 6
+vim.opt.sidescrolloff = 6
 
--- Statusline settings
-vim.opt.ruler = false
-vim.opt.showmode = false
-vim.opt.showcmd = false
-vim.opt.cmdheight = 0
-vim.opt.laststatus = 0
-
--- Visual settings
-vim.opt.termguicolors = true
 vim.opt.pumheight = 10
 vim.opt.guicursor = ""
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "90"
 
--- Indentation settings
 vim.opt.shiftwidth = 3
 vim.opt.softtabstop = 3
 vim.opt.tabstop = 3
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
--- Search settings
+vim.opt.cmdheight = 0
+vim.opt.laststatus = 0
+
 vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- File handling settings
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.undofile = true
 
--- Performance settings
 vim.opt.updatetime = 100
 vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 0
 
--- Other settings
-vim.g.mapleader = " "
-vim.g.markdown_recommended_style = 0
-vim.opt.splitright = true
-vim.o.winborder = "single"
-
--- Title settings
 vim.o.title = true
 vim.o.titlestring = "%{fnamemodify(getcwd(), ':t')} - %t %m"
 vim.o.titleold = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
 
--- Behavior settings
-vim.opt.fileencoding = "UTF-8"
-vim.opt.mouse = "a"
 vim.schedule(function()
    vim.opt.clipboard = "unnamedplus"
 end)
@@ -75,7 +55,6 @@ end)
 -- TITLE: Keymaps
 -- ======================================================================================
 
--- Handle gitsigns diff
 local function smart_quit()
    if vim.wo.diff then
       vim.cmd("wincmd p | q")
@@ -84,42 +63,39 @@ local function smart_quit()
    end
 end
 
--- File handling
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 vim.keymap.set("n", "<leader>q", smart_quit)
 vim.keymap.set("n", "<leader>w", ":silent w<cr>", { silent = true })
 vim.keymap.set("n", "<leader>d", "<cmd>bd<cr>")
 vim.keymap.set("n", "<leader><leader>d", "<cmd>bd!<cr>")
 vim.keymap.set("n", "<leader><leader>b", "<cmd>BufOnly<cr>")
 
--- Centered jumps
 vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- Editing helpers
 vim.keymap.set("n", "K", "mzi<cr><Esc>`z")
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-k>", "<C-6>")
 
--- Registers
 vim.keymap.set({ "n", "v" }, "<leader>y", '"ay')
 vim.keymap.set({ "n", "v" }, "<leader>p", '"ap')
 vim.keymap.set({ "n", "v" }, "<leader>x", '"_d')
 
--- Toggles
 vim.keymap.set("n", "<leader>ti", "<cmd>IBLToggle<cr>")
 vim.keymap.set("n", "<leader>ts", "<cmd>set spell!<cr>")
 vim.keymap.set("n", "<leader>tn", "<cmd>set relativenumber!<cr>")
 vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<cr>")
 
--- Visual mode improvements
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv", { silent = true })
 vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv", { silent = true })
 
--- Floating helper
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 local function float_terminal(cmd)
    local buf = vim.api.nvim_create_buf(false, true)
    local win = vim.api.nvim_open_win(buf, true, {
@@ -166,8 +142,8 @@ vim.api.nvim_create_autocmd("PackChanged", {
 vim.pack.add({
    { src = "https://github.com/darianmorat/gruvdark.nvim" },
    { src = "https://github.com/stevearc/oil.nvim" },
-   { src = "https://github.com/windwp/nvim-ts-autotag" },
    { src = "https://github.com/windwp/nvim-autopairs" },
+   { src = "https://github.com/windwp/nvim-ts-autotag" },
    { src = "https://github.com/kylechui/nvim-surround" },
    { src = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring" },
    { src = "https://github.com/numToStr/Comment.nvim" },
@@ -207,7 +183,6 @@ vim.pack.add({
 -- TITLE: Plugin config
 -- ======================================================================================
 
--- gruvdark.nvim
 local theme_file = io.open(os.getenv("HOME") .. "/.config/current_theme", "r")
 local theme_mode = theme_file and theme_file:read("*l") or "dark"
 
@@ -220,7 +195,8 @@ local colorscheme = theme_mode == "light" and "gruvdark-light" or "gruvdark"
 vim.o.background = theme_mode
 vim.cmd.colorscheme(colorscheme)
 
--- oil.nvim
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 require("oil").setup({
    default_file_explorer = true,
    delete_to_trash = true,
@@ -264,11 +240,30 @@ vim.api.nvim_create_autocmd("FileType", {
    end,
 })
 
--- autopairs & autotags
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 require("nvim-autopairs").setup({})
 require("nvim-ts-autotag").setup({})
+require("nvim-surround").setup({})
 
--- multicursor
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+require("ts_context_commentstring").setup({ enable_autocmd = false })
+require("Comment").setup({
+   pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+})
+
+vim.keymap.set("n", "<leader>cc", "gcc", { remap = true })
+vim.keymap.set("n", "<leader>cb", "gbc", { remap = true })
+vim.keymap.set("n", "<leader>ca", "gcA", { remap = true })
+vim.keymap.set("n", "<leader>co", "gco", { remap = true })
+vim.keymap.set("n", "<leader>cO", "gcO", { remap = true })
+
+vim.keymap.set("v", "<leader>c", "gc", { remap = true })
+vim.keymap.set("v", "<leader>b", "gb", { remap = true })
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 local mc = require("multicursor-nvim")
 mc.setup({})
 
@@ -311,14 +306,16 @@ vim.keymap.set("n", "<esc>", function()
    end
 end)
 
--- undotree
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 vim.g.undotree_WindowLayout = 3
 vim.g.undotree_SplitWidth = 38
 vim.g.undotree_SetFocusWhenToggle = 1
 
 vim.keymap.set("n", "<leader>tu", "<cmd>UndotreeToggle<CR>")
 
--- flash.nvim
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 require("flash").setup({
    highlight = { backdrop = true },
    prompt = { enabled = false },
@@ -333,25 +330,8 @@ vim.keymap.set({ "n", "x", "o" }, "S", function()
    require("flash").treesitter()
 end)
 
--- Comment
-require("ts_context_commentstring").setup({
-   enable_autocmd = false,
-})
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-require("Comment").setup({
-   pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-})
-
-vim.keymap.set("n", "<leader>cc", "gcc", { remap = true })
-vim.keymap.set("n", "<leader>cb", "gbc", { remap = true })
-vim.keymap.set("n", "<leader>ca", "gcA", { remap = true })
-vim.keymap.set("n", "<leader>co", "gco", { remap = true })
-vim.keymap.set("n", "<leader>cO", "gcO", { remap = true })
-
-vim.keymap.set("v", "<leader>c", "gc", { remap = true })
-vim.keymap.set("v", "<leader>b", "gb", { remap = true })
-
--- treesitter
 local nts = require("nvim-treesitter")
 nts.install({
    "javascript",
@@ -385,18 +365,7 @@ vim.api.nvim_create_autocmd("FileType", {
    end,
 })
 
--- fzf.lua
-local function fzf_vertical(command)
-   return function()
-      require("fzf-lua")[command]({
-         winopts = {
-            preview = {
-               layout = "vertical",
-            },
-         },
-      })
-   end
-end
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 require("fzf-lua").setup({
    defaults = {
@@ -435,6 +404,18 @@ require("fzf-lua").setup({
    },
 })
 
+local function fzf_vertical(command)
+   return function()
+      require("fzf-lua")[command]({
+         winopts = {
+            preview = {
+               layout = "vertical",
+            },
+         },
+      })
+   end
+end
+
 vim.keymap.set("n", "<leader>fi", "<cmd>FzfLua files<cr>")
 vim.keymap.set("n", "<leader>fj", "<cmd>FzfLua buffers<cr>")
 vim.keymap.set("n", "<leader>fd", "<cmd>FzfLua diagnostics_document<cr>")
@@ -448,7 +429,8 @@ vim.keymap.set("n", "<leader>fr", fzf_vertical("lsp_references"))
 vim.keymap.set("n", "<leader>fw", fzf_vertical("grep_cword"))
 vim.keymap.set("n", "<leader>fW", fzf_vertical("grep_cWORD"))
 
--- gitsigns
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 require("gitsigns").setup({
    signs = {
       add = { text = "❘" },
@@ -506,7 +488,8 @@ require("gitsigns").setup({
    end,
 })
 
--- blankline
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 require("ibl").setup({
    indent = {
       char = "╎",
@@ -519,7 +502,8 @@ require("ibl").setup({
    },
 })
 
--- blink & luasnip
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 require("luasnip").config.setup({})
 require("blink.cmp").setup({
    fuzzy = {
@@ -569,7 +553,8 @@ require("blink.cmp").setup({
    },
 })
 
--- neovim/nvim-lspconfig
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 vim.diagnostic.config({
    virtual_text = false,
    underline = true,
@@ -612,7 +597,8 @@ vim.keymap.set("n", "<leader>vk", function()
    vim.diagnostic.jump({ count = -1 })
 end)
 
--- confort.nvim
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 require("conform").setup({
    formatters_by_ft = {
       javascript = { "prettier" },
@@ -678,14 +664,12 @@ end)
 -- TITLE: Commands & Auto-commands
 -- ======================================================================================
 
--- Filetype detection for XAML
 vim.filetype.add({
    extension = {
       xaml = "xml",
    },
 })
 
--- Close all buffers except current
 vim.api.nvim_create_user_command("BufOnly", function()
    local listed_buffers = 0
    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -698,7 +682,6 @@ vim.api.nvim_create_user_command("BufOnly", function()
    vim.notify(closed_count .. " buffers closed")
 end, {})
 
--- Disable automatic comment continuation
 vim.api.nvim_create_autocmd("FileType", {
    pattern = "*",
    callback = function()
@@ -706,7 +689,6 @@ vim.api.nvim_create_autocmd("FileType", {
    end,
 })
 
--- Yank highlighting
 local yank = vim.hl.on_yank
 vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -716,7 +698,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
    end,
 })
 
--- Restore last cursor position when reopening a file
 local last_cursor_group = vim.api.nvim_create_augroup("LastCursorGroup", {})
 vim.api.nvim_create_autocmd("BufWinEnter", {
    group = last_cursor_group,
@@ -729,7 +710,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
    end,
 })
 
--- Macro recording notifications
 vim.api.nvim_create_autocmd("RecordingEnter", {
    callback = function()
       print("Recording @" .. vim.fn.reg_recording())
@@ -742,7 +722,6 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
    end,
 })
 
--- Automatically Split help Buffers to the right
 vim.api.nvim_create_autocmd("BufWinEnter", {
    pattern = "*.txt",
    callback = function()
