@@ -574,7 +574,18 @@ vim.diagnostic.config({
    virtual_text = false,
    underline = true,
    update_in_insert = false,
-   jump = { float = true },
+   jump = {
+      on_jump = function(diagnostic, bufnr)
+         if not diagnostic then
+            return
+         end
+         vim.diagnostic.open_float({
+            bufnr = bufnr,
+            scope = "cursor",
+            focus = false,
+         })
+      end,
+   },
 })
 
 vim.lsp.config("*", {})
