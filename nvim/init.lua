@@ -480,7 +480,7 @@ require("gitsigns").setup({
       end)
 
       map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
-      map("n", "<leader>tr", gitsigns.toggle_deleted)
+      map("n", "<leader>td", gitsigns.toggle_deleted)
 
       map("n", "<leader>gb", function()
          gitsigns.blame_line({ full = true })
@@ -585,10 +585,15 @@ vim.lsp.enable({
 
 vim.keymap.set("n", "gh", vim.lsp.buf.hover)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
-vim.keymap.set("n", "<leader>xx", vim.lsp.buf.code_action)
+vim.keymap.set("n", "<leader>xo", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<leader>sr", vim.lsp.buf.rename)
 vim.keymap.set("n", "<leader>vo", vim.diagnostic.open_float)
 vim.keymap.set("i", "<c-h>", vim.lsp.buf.signature_help)
+
+vim.keymap.set("n", "<leader>tv", function()
+   local new_config = not vim.diagnostic.config().virtual_text
+   vim.diagnostic.config({ virtual_text = new_config })
+end)
 
 vim.keymap.set("n", "<leader>vj", function()
    vim.diagnostic.jump({ count = 1 })
