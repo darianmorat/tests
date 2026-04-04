@@ -9,7 +9,7 @@
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
     "blink.cmp": {
-      "rev": "1eebbba1baa56946e7c031111d88a72f945381f5",
+      "rev": "6731979aa370be0e5c7cc73258ce945730a515c9",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "conform.nvim": {
@@ -21,11 +21,11 @@
       "src": "https://github.com/folke/flash.nvim"
     },
     "fzf-lua": {
-      "rev": "c9e7b7bfbd01f949164988ee1684035468e1995c",
+      "rev": "5cbe58ca48c4c4a2fbe5e324b854596d8242711e",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "0f00d07c2c3106ba6abd594ac1c17f211141b7b5",
+      "rev": "944ef13cc8d8fe8b846c91f36041c8dfb85ca000",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "gruvdark.nvim": {
@@ -45,7 +45,7 @@
       "src": "https://github.com/windwp/nvim-autopairs"
     },
     "nvim-lspconfig": {
-      "rev": "8e2084bf5e40c79c1f42210a6ef96a0a4793a763",
+      "rev": "9ccd58a7949091c0cc2777d4e92a45a209c808c1",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-surround": {
@@ -53,7 +53,7 @@
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
-      "rev": "c82bf96f0a773d85304feeb695e1e23b2207ac35",
+      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -62,7 +62,7 @@
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "nvim-ts-context-commentstring": {
-      "rev": "1b212c2eee76d787bbea6aa5e92a2b534e7b4f8f",
+      "rev": "a681c2114cbe52e9a6878d09c9d41c35b800ce5a",
       "src": "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
     },
     "oil.nvim": {
