@@ -175,8 +175,8 @@ vim.pack.add({
 
 -- vim.opt.runtimepath:prepend(vim.fn.expand("~/projects/gruvdark.nvim"))
 
--- Currently there is a problem, is showing all the messages, including undo and redo
--- actions, which breaks the silent setup completely, so have this is a reminder to fix
+-- Is currently showing all the messages, including yank, delete, undo and redo actions
+-- which breaks the silent setup completely, so have this as a reminder to fix later
 -- vim.opt.report = 9999
 -- require("vim._core.ui2").enable({ enable = true })
 
