@@ -55,17 +55,7 @@ end)
 -- TITLE: Keymaps
 -- ======================================================================================
 
-local function smart_quit()
-   if vim.wo.diff then
-      vim.cmd("wincmd p | q")
-   else
-      vim.cmd(":q")
-   end
-end
-
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
-vim.keymap.set("n", "<leader>q", smart_quit)
+vim.keymap.set("n", "<leader>q", "<cmd>q<cr>")
 vim.keymap.set("n", "<leader>w", ":silent w<cr>", { silent = true })
 vim.keymap.set("n", "<leader>d", "<cmd>bd<cr>")
 vim.keymap.set("n", "<leader><leader>d", "<cmd>bd!<cr>")
@@ -73,12 +63,12 @@ vim.keymap.set("n", "<leader><leader>b", "<cmd>BufOnly<cr>")
 
 vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<c-d>", "<c-d>zz")
+vim.keymap.set("n", "<c-u>", "<c-u>zz")
 
 vim.keymap.set("n", "K", "mzi<cr><Esc>`z")
 vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-k>", "<C-6>")
+vim.keymap.set("n", "<c-k>", "<c-6>")
 
 vim.keymap.set({ "n", "v" }, "<leader>y", '"ay')
 vim.keymap.set({ "n", "v" }, "<leader>p", '"ap')
@@ -180,6 +170,17 @@ vim.pack.add({
 -- eslint-language-server
 
 -- ======================================================================================
+-- TITLE: Local/UI config
+-- ======================================================================================
+
+-- vim.opt.runtimepath:prepend(vim.fn.expand("~/projects/gruvdark.nvim"))
+
+-- Currently there is a problem, is showing all the messages, including undo and redo
+-- actions, which breaks the silent setup completely, so have this is a reminder to fix
+-- vim.opt.report = 9999
+-- require("vim._core.ui2").enable({ enable = true })
+
+-- ======================================================================================
 -- TITLE: Plugin config
 -- ======================================================================================
 
@@ -202,9 +203,9 @@ require("oil").setup({
    delete_to_trash = true,
    use_default_keymaps = false,
    keymaps = {
-      ["<BS>"] = { "actions.parent", mode = "n" },
-      ["<CR>"] = "actions.select",
-      ["<C-p>"] = "actions.preview",
+      ["<bs>"] = { "actions.parent", mode = "n" },
+      ["<cr>"] = "actions.select",
+      ["<c-p>"] = "actions.preview",
       ["_"] = { "actions.open_cwd", mode = "n" },
       ["`"] = { "actions.cd", mode = "n" },
       ["q"] = { "actions.close", mode = "n" },
@@ -312,7 +313,14 @@ vim.g.undotree_WindowLayout = 3
 vim.g.undotree_SplitWidth = 38
 vim.g.undotree_SetFocusWhenToggle = 1
 
-vim.keymap.set("n", "<leader>tu", "<cmd>UndotreeToggle<CR>")
+vim.keymap.set("n", "<leader>tu", "<cmd>UndotreeToggle<cr>")
+
+vim.api.nvim_create_autocmd("FileType", {
+   pattern = "undotree",
+   callback = function()
+      vim.keymap.set("n", "q", "<cmd>UndotreeHide<cr>", { buffer = true })
+   end,
+})
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -462,6 +470,12 @@ require("gitsigns").setup({
       map("n", "<leader>gi", gitsigns.diffthis)
       map("n", "<leader>gI", function()
          gitsigns.diffthis("~")
+      end)
+
+      map("n", "q", function()
+         if vim.wo.diff then
+            vim.cmd("wincmd p | q")
+         end
       end)
 
       map("n", "<leader>gj", gitsigns.next_hunk)
