@@ -9,11 +9,11 @@
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
     "blink.cmp": {
-      "rev": "fd0fe1ad450a407be34d18642784c71d3ee48d19",
+      "rev": "1617522ae80ca2436813da8afe2fc4b1280e975d",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
-      "rev": "1c9dfb261b8be35f689c6d83dfd3e92b7f59ecf8",
+      "rev": "dda2666685a5ac3598166577d2e34f1fff6b1637",
       "src": "https://github.com/saghen/blink.lib"
     },
     "conform.nvim": {
@@ -25,7 +25,7 @@
       "src": "https://github.com/folke/flash.nvim"
     },
     "fzf-lua": {
-      "rev": "ffa44ee9470743a7697d28df3a1a216fdfe2b09d",
+      "rev": "b437bafc981a180d609bb4092c56ce8999f7a2c4",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -49,7 +49,7 @@
       "src": "https://github.com/windwp/nvim-autopairs"
     },
     "nvim-lspconfig": {
-      "rev": "81878de76c0de4ce289513734ad80c31ec7871b8",
+      "rev": "0e25d7445ba0d7cc0ad02a39aa843cc8b9d2525e",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-surround": {
