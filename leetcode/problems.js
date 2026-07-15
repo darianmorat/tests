@@ -1,33 +1,33 @@
 class Solution {
    // #1
    hasDuplicate(nums) {
-      const noDuplicate = [...new Set(nums)]; // is a collection of unique values
-      return noDuplicate;
+      const noDuplicate = [...new Set(nums)] // is a collection of unique values
+      return noDuplicate
    }
 
    // #2
    isAnagram(s, t) {
-      return s.split("").sort().join() === t.split("").sort().join();
+      return s.split("").sort().join() === t.split("").sort().join()
    }
 
    // #3
    twoSum(nums, target) {
-      const prevMap = new Map();
+      const prevMap = new Map()
 
       for (let i = 0; i < nums.length; i++) {
-         const diff = target - nums[i];
+         const diff = target - nums[i]
          if (prevMap.has(diff)) {
-            return [prevMap.get(diff), i];
+            return [prevMap.get(diff), i]
          }
-         prevMap.set(nums[i], i);
+         prevMap.set(nums[i], i)
       }
    }
 
    // #4
    groupAnagrams(strs) {
-      let sorting = strs.map((item) => item.split("").sort().join(""));
-      let group = sorting.filter((item) => item === item);
-      return group;
+      let sorting = strs.map((item) => item.split("").sort().join(""))
+      let group = sorting.filter((item) => item === item)
+      return group
    }
 
    // #5
@@ -36,31 +36,31 @@ class Solution {
          .split("")
          .filter((ch) => /[a-z0-9]/i.test(ch))
          .join("")
-         .toLowerCase();
+         .toLowerCase()
 
-      return letters === letters.split("").reverse().join("");
+      return letters === letters.split("").reverse().join("")
    }
 
    // #6
    binarySearch(arr, target) {
-      let left = 0;
-      let right = arr.length - 1;
+      let left = 0
+      let right = arr.length - 1
 
       while (left <= right) {
-         let mid = Math.floor((left + right) / 2);
+         let mid = Math.floor((left + right) / 2)
 
          if (target === arr[mid]) {
-            return mid;
+            return mid
          }
 
          if (target < arr[mid]) {
-            right = mid - 1;
+            right = mid - 1
          } else {
-            left = mid + 1;
+            left = mid + 1
          }
       }
 
-      return -1;
+      return -1
    }
 
    // #7
@@ -68,18 +68,18 @@ class Solution {
       const result = str
          .split("")
          .map((l, i) => (l.toUpperCase() === l && i !== 0 ? " " + l : l))
-         .join("");
+         .join("")
 
-      return result;
+      return result
    }
 
    // #8
 }
 
-const solution = new Solution();
+const solution = new Solution()
 
 // #1
-console.log(solution.hasDuplicate([1, 2, 3, 3]));
+console.log(solution.hasDuplicate([1, 2, 3, 3]))
 
 // #2
 // console.log(solution.isAnagram('racecar', 'carrace'));
