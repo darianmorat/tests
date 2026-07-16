@@ -1,0 +1,22 @@
+{
+   "endOfLine": "lf",
+   "semi": false,
+   "singleQuote": false,
+   "tabWidth": 3,
+   "printWidth": 80,
+
+   "overrides": [
+      {
+         "files": ["*.tsx", "*.jsx"],
+         "options": {
+            "printWidth": 100
+         }
+      },
+      {
+         "files": ["*.html"],
+         "options": {
+            "printWidth": 120
+         }
+      }
+   ]
+}
