@@ -480,9 +480,6 @@ require("ibl").setup({
 
 -- --- -- -- --- -- -- --- -- -- --- -- -- --- -- -- --- -- -- --- -- -- --- -- -- --- -- -- --- --
 
-vim.api.nvim_set_hl(0, "SnippetTabstop", {})
-vim.api.nvim_set_hl(0, "SnippetTabstopActive", {})
-
 require("blink.cmp").setup({
    fuzzy = {
       implementation = "lua",
