@@ -4,7 +4,7 @@ import { EventEmitter } from "events"
 // Classes with private fields and methods
 class DataProcessor extends EventEmitter {
    #cache = new Map()
-   #isProcessing = true
+   #isProcessing = false
 
    constructor(options = {}) {
       super()
@@ -12,14 +12,14 @@ class DataProcessor extends EventEmitter {
       this.maxRetries = options.maxRetries ?? 3
    }
 
+   // Async/await with error handling
    async processData(data, transform = (x) => x) {
       if (this.#isProcessing) {
-         throw new Error("Processing")
+         throw new Error("Already processing")
       }
 
       this.#isProcessing = true
       this.emit("start", { timestamp: Date.now() })
-      console.log(data)
 
       try {
          const result = await this.#performProcessing(data, transform)
