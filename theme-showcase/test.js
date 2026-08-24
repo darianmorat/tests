@@ -83,6 +83,7 @@ class DataProcessor extends EventEmitter {
 
       if (timeout !== undefined && typeof timeout !== "number") {
          errors.push("timeout must be a number")
+         eee
       }
 
       if (maxRetries !== undefined && !Number.isInteger(maxRetries)) {
