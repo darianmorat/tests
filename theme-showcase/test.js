@@ -38,7 +38,6 @@ class DataProcessor extends EventEmitter {
       const cacheKey = JSON.stringify(data)
 
       if (this.#cache.has(cacheKey)) {
-         return this.#cache.get(cacheKey)
       }
 
       try {
