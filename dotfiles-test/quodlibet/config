@@ -1,0 +1,102 @@
+[settings]
+columns = ~title~version,~people,~#length
+	
+default_rating = 0.5
+disable_mmkeys = false
+scan = /home/darianmorat/Documents/music/LofisRNF:/home/darianmorat/Documents/music/LikeVideos-v2:/home/darianmorat/Documents/music/LikeVideos:/home/darianmorat/Documents/music/LatinMRV:/home/darianmorat/Documents/music/FunksNRP:/home/darianmorat/Documents/music/SoundCloud:/home/darianmorat/Documents/music/AnimeOST
+window_title_pattern = 
+
+[memory]
+browser = SearchBar
+browser_filesystem_maximized = 4
+browser_filesystem_position = 0 0
+browser_filesystem_size_ = 956 1020
+browser_tracklist_maximized = 4
+chooser_dir = /home/darianmorat/Documents/music
+column_expands = ~title~version,1,~people,1
+	
+column_widths = ~title~version,-1,~people,-1
+	
+open_browsers = 
+plugin_prefs_maximized = 4
+plugin_prefs_position = 583 260
+plugin_prefs_size_ = 750 500
+plugin_selection = WaveformSeekBar
+prefs_page = songlist
+queue = False
+queue_disable = False
+queue_expanded = False
+quodlibet_information_maximized = 0
+quodlibet_information_position = 734 311
+quodlibet_information_size_ = 452 400
+quodlibet_last_active_version = 4.7.1
+quodlibet_maximized = 0
+quodlibet_position = 0 0
+quodlibet_properties_maximized = 0
+quodlibet_properties_pos = 0.39971550497866287
+quodlibet_properties_position = 608 329
+quodlibet_properties_size_single = 703 419
+quodlibet_size_ = 956 1020
+seek = 0
+shuffle = True
+sidebar_pos = 0.25
+song = /home/darianmorat/Documents/music/AnimeOST/Before My Body Is Dry.mp3
+sortby = 
+	
+volume = 1.0
+
+[player]
+gst_buffer = 3.0
+is_playing = False
+replaygain_mode = auto
+time_remaining = false
+
+[browsers]
+albumlist_pos = 0.4
+audiofeeds_pos = 0.4
+collectionbrowser_pos = 0.4
+covergrid_pos = 0.4002333722287048
+filesystem = /home/darianmorat/Documents/music
+filesystem_pos = 0.409375
+internetradio_pos = 0.4
+pane_mode = 1
+panedbrowser_pane_widths = 0.49747474747474746
+panedbrowser_pos = 0.40572916666666664
+playlistsbrowser_pos = 0.4
+query_text = 
+rating_click = false
+soundcloud_pos = 0.4
+
+[__config__]
+version = 0
+
+[plugins]
+active_plugins = Remove Playlist Duplicates
+	Shuffle Playlist
+	WaveformSeekBar
+	mpris
+animosd_monitor = 0
+cover_engine_discogs = True
+icon_tooltip = <album|<album~discnumber~part~tracknumber~title~version>|<artist~title~version>>
+karaoke_band = 220.0
+quodlibet.fake.plugins.gajim_status_accounts = 
+quodlibet.fake.plugins.gajim_status_pattern = <artist> - <title>
+quodlibet.fake.plugins.gajim_status_paused = True
+quodlibet.fake.plugins.gajim_status_statuses = online chat
+quodlibet.fake.plugins.visualisations_executable = projectM-pulseaudio
+quodlibet.fake.plugins.waveformseekbar_height_px = 40
+quodlibet.fake.plugins.waveformseekbar_show_current_pos = True
+quodlibet.fake.plugins.waveformseekbar_show_time_labels = False
+randomalbum_use_weights = 0
+scrobbler_service = Last.fm
+titlecase_allow_all_caps = True
+titlecase_human_title_case = True
+view_lyrics_hide_timestamps = true
+
+[albumart]
+force_filename = false
+prefer_embedded = false
+
+[rename]
+windows = true
+
