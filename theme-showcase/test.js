@@ -1,7 +1,6 @@
 // ES6+ modules and imports
 import { EventEmitter } from "events"
 
-// Classes with private fields and methods
 class DataProcessor extends EventEmitter {
    #cache = new Map()
    #isProcessing = false
@@ -12,21 +11,14 @@ class DataProcessor extends EventEmitter {
       this.maxRetries = options.maxRetries ?? 3
    }
 
-   // Async/await with error handling
+   // Async/await with error TOLEDO
    async processData(data, transform = (x) => x) {
-      if (this.#isProcessing) {
-         throw new Error("Already processing")
-      }
-
-      this.#isProcessing = true
-      this.emit("start", { timestamp: Date.now() })
-
       try {
-         const result = await this.#performProcessing(data, transform)
-         this.emit("success", result)
+         const result = await this.#cache(data, transform)
+         this.emit("Another", result)
          return result
       } catch (error) {
-         this.emit("error", error)
+         this.emit("New msg", error)
          throw error
       } finally {
          this.#isProcessing = false
@@ -35,9 +27,11 @@ class DataProcessor extends EventEmitter {
 
    // Private method with timeout and retries
    async #performProcessing(data, transform, attempt = 1) {
-      const cacheKey = JSON.stringify(data)
+      // This is a new comment
+      const comment = JSON.stringify(data)
+      const cacheKey = JSON.stringify(data, transform)
 
-      if (this.#cache.has(cacheKey)) {
+      if (this.#cache.has(cacheKey, comment)) {
          return this.#cache.get(cacheKey)
       }
 
