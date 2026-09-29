@@ -1,0 +1,20 @@
+---
+import BaseLayout from "./BaseLayout.astro"
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+<div style="color:white; display:flex; gap:8px;">
+   {frontmatter.tags.map((tag: any) => 
+   <p style="background-color:grey; padding:2px 4px;  border-radius:4px;  margin-top: 0;">
+   {tag} 
+   </p>)
+   }  
+</div>
+<a href="/blog/">Go back</a>
+<p>{frontmatter.pubDate.toString().slice(0,10)}</p>
+<p><em>{frontmatter.description}</em></p>
+<p>Written by: {frontmatter.author}</p>
+<img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+<slot />
+</BaseLayout>
