@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "version": "1.0",
+  "name": "Dark Theme",
+  "theme": {
+    "images": {
+      "theme_toolbar": "images/theme_toolbar.png"
+    },
+    "colors": {
+      "frame_inactive": [0, 0, 0],
+      "frame": [50, 50, 50],
+      "toolbar": [5, 5, 5],
+      "tab_text": [255, 255, 255],
+      "tab_background_text": [200, 200, 200],
+      "toolbar_button_icon": [200, 200, 200],
+      "omnibox_text": [200, 200, 200]
+    }
+  }
+}
