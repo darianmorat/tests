@@ -12,8 +12,8 @@
       "tab_background_text": [120, 120, 120],
       "tab_text": [210, 210, 210],
       "bookmark_text": [100, 100, 100],
-      "background_tab": [22, 22, 22],
-      "background_tab_inactive": [20, 20, 20],
+      "background_tab": [25, 25, 25],
+      "background_tab_inactive": [25, 25, 25],
       "toolbar_text": [150, 150, 150],
       "ntp_background": [22, 22, 22]
     }
