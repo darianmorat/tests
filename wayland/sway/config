@@ -47,7 +47,7 @@ exec swayidle -w \
     timeout 900 'swaylock -f -c 000000' \
     before-sleep 'swaylock -f -c 000000'
 
-# Themeing
+# Theming
 exec_always ~/.scripts/theme-toggle init
 output "*" bg "$HOME/.config/wallpapers/wallhaven-47odme.jpg" fill
 
