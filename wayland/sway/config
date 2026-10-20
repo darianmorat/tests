@@ -36,11 +36,11 @@ default_floating_border normal 1
 seat * hide_cursor 5000
 seat * hide_cursor when-typing enable
 
-# Colors                 border  backgr. text    indicator child_border
-client.focused           #181818 #131313 #FFFFFF #FFFFFF   #181818
-client.focused_inactive  #131313 #131313 #FFFFFF #131313   #131313
-client.unfocused         #131313 #131313 #686868 #131313   #131313
-client.urgent            #161616 #801717 #FFFFFF #801717   #801717
+# Colors                border  backgr. text    indicator child_border
+client.focused          #181818 #131313 #FFFFFF #FFFFFF   #181818
+client.focused_inactive #131313 #131313 #FFFFFF #131313   #131313
+client.unfocused        #131313 #131313 #686868 #131313   #131313
+client.urgent           #161616 #801717 #FFFFFF #801717   #801717
 
 # Autolock after 15 minutes.
 exec swayidle -w \

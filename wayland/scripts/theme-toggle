@@ -103,7 +103,7 @@ theme-manager() {
       indicator="#2E9EF4"
    fi
 
-   sed -i "s|client.focused .*|client.focused           #181818 #131313 #FFFFFF $indicator   #181818|" "$HOME/.config/sway/config"
+   sed -i "s|client.focused .*|client.focused          #181818 #131313 #FFFFFF $indicator   #181818|" "$HOME/.config/sway/config"
 
    # Reload and notify
    if [ "$1" != "init" ]; then
