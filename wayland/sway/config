@@ -1,16 +1,18 @@
-# Sway configuration converted from i3
+# Sync env to D-Bus/systemd (portals, popups)
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+# Start XDG autostart .desktop applications
+exec dex --autostart --environment sway
+
+# Set modifier key
 set $mod Mod1
 
 # Drag floating windows
 floating_modifier $mod
 
-# Font
+# Font and scaling
 font pango:Inter Display 14
 output eDP-1 scale 1
-
-# Window title
-for_window [app_id=".*"] title_format "%title"
-# for_window [class=".*"] title_format "%title"
 
 # Define popup size and position window
 set $popup resize set 1920 1051, move position center
@@ -19,10 +21,8 @@ set $popup resize set 1920 1051, move position center
 for_window [window_type="dialog"] $popup
 for_window [window_type="utility"] $popup
 
-for_window [app_id="wezterm" title=".*impala.*"] floating enable, $popup
-for_window [app_id="wezterm" title=".*bluetui.*"] floating enable, $popup
-# for_window [class="wezterm-impala"] floating enable, $popup
-# for_window [class="wezterm-bluetui"] floating enable, $popup
+for_window [class="wezterm-impala"] floating enable, $popup
+for_window [class="wezterm-bluetui"] floating enable, $popup
 
 # Window options
 title_align center
@@ -32,49 +32,44 @@ workspace_layout tabbed
 default_border normal 1
 default_floating_border normal 1
 
-# Native Sway mouse idle hide
+# Mouse idle hide
 seat * hide_cursor 5000
 seat * hide_cursor when-typing enable
 
 # Colors                 border  backgr. text    indicator child_border
-client.focused          #181818 #131313 #FFFFFF #FFFFFF   #181818
+client.focused           #181818 #131313 #FFFFFF #FFFFFF   #181818
 client.focused_inactive  #131313 #131313 #FFFFFF #131313   #131313
 client.unfocused         #131313 #131313 #686868 #131313   #131313
 client.urgent            #161616 #801717 #FFFFFF #801717   #801717
-
-# Start XDG autostart .desktop files
-exec dex --autostart --environment sway
 
 # Autolock after 15 minutes.
 exec swayidle -w \
     timeout 900 'swaylock -f -c 000000' \
     before-sleep 'swaylock -f -c 000000'
 
-# Theme restoration
+# Themeing
 exec_always ~/.scripts/theme-toggle init
+output "*" bg "$HOME/.config/wallpapers/wallhaven-47odme.jpg" fill
 
-# Night light
+# Start applications
 exec gammastep
-
-# Notifications
 exec mako
-
-# Start default browser
 exec helium-browser
 
-# Volume and brightness controls
+# Volume controls
 bindsym XF86AudioRaiseVolume exec "pamixer -i 5 && notify-send -a 'OSD' -h string:x-canonical-private-synchronous:osd -h int:value:$(pamixer --get-volume) 'Volume'"
 bindsym XF86AudioLowerVolume exec "pamixer -d 5 && notify-send -a 'OSD' -h string:x-canonical-private-synchronous:osd -h int:value:$(pamixer --get-volume) 'Volume'"
 bindsym XF86AudioMute exec "pamixer -t && if pamixer --get-mute | grep -q 'true'; then notify-send -a 'OSD' -h string:x-canonical-private-synchronous:osd 'Muted'; else notify-send -a 'OSD' -h string:x-canonical-private-synchronous:osd -h int:value:$(pamixer --get-volume) 'Volume'; fi"
 
+# Brightness controls
 bindsym XF86MonBrightnessUp exec "brightnessctl set +10% && notify-send -a 'OSD' -h string:x-canonical-private-synchronous:osd -h int:value:$(brightnessctl -m | cut -d, -f4 | tr -d '%') 'Brightness'"
 bindsym XF86MonBrightnessDown exec "brightnessctl set 10%- && notify-send -a 'OSD' -h string:x-canonical-private-synchronous:osd -h int:value:$(brightnessctl -m | cut -d, -f4 | tr -d '%') 'Brightness'"
 
 # Media controls
 bindsym XF86AudioPlay exec "playerctl play-pause"
 
-# Screenshots (grim + slurp for Wayland)
-bindsym Print exec grim -g "$(slurp)" - | wl-copy
+# Print assignation
+bindsym Print exec --no-startup-id "flameshot gui"
 
 # Theme toggle
 bindsym $mod+Shift+s exec ~/.scripts/theme-toggle
@@ -95,11 +90,14 @@ bindsym $mod+Shift+d kill
 # Lock screen
 bindsym $mod+Shift+l exec swaylock -f -c 000000
 
-# App launcher (wofi)
+# App launcher
 bindsym $mod+Shift+Ctrl+u exec wofi --show drun
 
+# Clipboard history
+exec wl-paste --watch cliphist store
+
 # Clipboard menu
-# bindsym $mod+Shift+Ctrl+m exec CM_LAUNCHER=rofi clipmenu
+bindsym $mod+Shift+Ctrl+m exec cliphist list | wofi --dmenu | cliphist decode | wl-copy
 
 # Change focus
 bindsym $mod+i focus left
@@ -172,13 +170,13 @@ mode "RS" {
 
 bindsym $mod+Shift+m mode "RS"
 
-# Native Keyboard settings (replaces setxkbmap)
-# input * {
-#     xkb_layout "us"
-#     xkb_options "compose:menu"
-# }
+# Input Keyboard
+input * {
+    xkb_layout "us"
+    xkb_options "compose:menu"
+}
 
-# Input Mouse
+# Input Mouse 
 input "10182:480:GXTP7863:00_27C6:01E0_Touchpad" {
     dwt disabled
     tap enabled
