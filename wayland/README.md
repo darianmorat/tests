@@ -35,15 +35,14 @@
 - **swaylock** - Screen locker
 - **swayidle** - automatic screen locker
 - **gammastep** - Night color temperature
-- **safeeyes** - Periodic eye-break reminders `AUR` [extra: python-pywayland] - add to notes
+- **safeeyes** - Periodic eye-break reminders `AUR`
 
 ## System
 
 - **impala** - Wi-Fi management TUI
 - **bluetui** - Bluetooth management TUI
-- **dunst** - Notification daemon
-- mako - Notification
-- **clipmenu** - Clipboard manager -- [wl-clipboard + clipman]
+- **mako** - Notification daemon
+- **clipmenu** - Clipboard manager -- [wl-clipboard + cliphist]
 - **trash-cli** - CLI trash utility
 - **7zip** - File compression and extraction
 - **pacman-contrib** - Additional pacman utilities
@@ -51,8 +50,8 @@
 - **rclone** - Cloud synchronization tool
 - **tlp** - Power management daemon
 - **dex** - Desktop entry execution for autostart
-- xdg-desktop-portal
-- xdg-desktop-portal-wlr
+- xdg-desktop-portal - [??]
+- xdg-desktop-portal-wlr - [??]
 
 ## Drives
 
@@ -66,7 +65,7 @@
 - **firefox** - Fallback web browser
 - **torbrowser** - Privacy web browser
 - **libreoffice** - Office suite
-- **nemo** - File manager -- [pending to check]
+- **nemo** - File manager
 - **nemo-fileroller** - Nemo archive integration
 - **ffmpegthumbnailer** - Video thumbnail generator
 - **mpv** - Media player
@@ -74,7 +73,7 @@
 - **qimgv-git** - Image viewer `AUR`
 - **flameshot** - Screenshot tool -- [grim + slurp + swappy]
 - **gimp** - Image editor
-- **xcolor** - X11 color picker -- [hyprpicker]
+- **hyprpicker** - Color picker
 - **obs-studio** - Screen recording and streaming
 - **seanime-denshi** - Anime library and streaming server `AUR`
 - **stremio-enhanced-bin** - Media streaming client `AUR`
@@ -93,5 +92,4 @@
 
 - **materia-gtk-theme** - GTK theme
 - **papirus-icon-theme** - Icon theme
-- **swaybg** - X11 background utility
-- **xsettingsd** - X11 GTK settings daemon - [use instead: gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark']
+- **swaybg** - background utility
