@@ -42,7 +42,8 @@
 - **impala** - Wi-Fi management TUI
 - **bluetui** - Bluetooth management TUI
 - **mako** - Notification daemon
-- **clipmenu** - Clipboard manager -- [wl-clipboard + cliphist]
+- **cliphist** - Clipboard history
+- **wl-clipboard** - Clipboard menu
 - **trash-cli** - CLI trash utility
 - **7zip** - File compression and extraction
 - **pacman-contrib** - Additional pacman utilities
@@ -50,8 +51,9 @@
 - **rclone** - Cloud synchronization tool
 - **tlp** - Power management daemon
 - **dex** - Desktop entry execution for autostart
-- xdg-desktop-portal - [??]
-- xdg-desktop-portal-wlr - [??]
+- **xdg-desktop-portal** - App integration bridge
+- **xdg-desktop-portal-wlr** - Screen capture and sharing
+- **xdg-desktop-portal-gtk** - File picker and save dialogs
 
 ## Drives
 
@@ -71,7 +73,7 @@
 - **mpv** - Media player
 - **quodlibet** - Music player and library manager
 - **qimgv-git** - Image viewer `AUR`
-- **flameshot** - Screenshot tool -- [grim + slurp + swappy]
+- **flameshot** - Screenshot capture utility
 - **gimp** - Image editor
 - **hyprpicker** - Color picker
 - **obs-studio** - Screen recording and streaming
@@ -90,6 +92,7 @@
 
 ## Theme
 
-- **materia-gtk-theme** - GTK theme
+- **swaybg** - Background utility
+- **gnome-themes-extra** - Extra themes
 - **papirus-icon-theme** - Icon theme
-- **swaybg** - background utility
+- **nwg-look** - Settings editor

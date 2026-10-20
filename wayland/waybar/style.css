@@ -45,13 +45,12 @@
   color: transparent;
   background-image: radial-gradient(
     circle,
-    transparent 3.5px,
-    #ffffff 3.5px,
-    #ffffff 4.5px,
-    transparent 5px
+    transparent 3.3px,
+    #ffffff 3.3px,
+    #ffffff 4.3px,
+    transparent 4.8px
   );
   min-width: 20px;
-  background-size: 100% 100%;
   padding: 0 6px;
 }
 #workspaces button.focused {
@@ -66,13 +65,12 @@
   color: transparent;
   background-image: radial-gradient(
     circle,
-    transparent 3.5px,
-    #888888 3.5px,
-    #888888 4.5px,
-    transparent 5px
+    transparent 3.3px,
+    #888888 3.3px,
+    #888888 4.3px,
+    transparent 4.8px
   );
   min-width: 20px;
-  background-size: 100% 100%;
   padding: 0 6px;
 }
 #workspaces button.empty.focused {

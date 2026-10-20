@@ -22,7 +22,7 @@ config.font_size = 16.0
 config.cell_width = 0.90
 config.unicode_version = 14
 
-config.initial_cols = 159
+config.initial_cols = 160
 config.initial_rows = 35
 
 config.underline_thickness = "2px"

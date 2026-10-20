@@ -1,6 +1,7 @@
 #!/usr/bin/zsh
 
 theme-manager() {
+   # Vars
    local CURRENT_THEME_FILE="$HOME/.config/current_theme"
    local CONFIG_DIR="$HOME/.config"
    local GTK3_CONFIG="$CONFIG_DIR/gtk-3.0/settings.ini"
@@ -18,31 +19,25 @@ theme-manager() {
    # Save and export
    export THEME_MODE="$theme"
 
-   # GTK Theme and Icon Theme variables
-   local gtk_theme=$([ "$theme" = "dark" ] && echo "Materia-dark" || echo "Materia-light")
-   local icon_theme=$([ "$theme" = "dark" ] && echo "Papirus-Dark" || echo "Papirus-Light")
+   # GTK Theme
+   local gtk_theme icon_theme
+   if [ "$theme" = "dark" ]; then
+      gtk_theme="Adwaita-dark"
+      icon_theme="Papirus-Dark"
+   else
+      gtk_theme="Adwaita"
+      icon_theme="Papirus-Light"
+   fi
 
-   # 1. Update the .ini files (for older XWayland apps)
-   sed -i "s|gtk-theme-name=.*|gtk-theme-name=$gtk_theme|" "$GTK3_CONFIG"
-   [ -f "$GTK4_CONFIG" ] && sed -i "s|gtk-theme-name=.*|gtk-theme-name=$gtk_theme|" "$GTK4_CONFIG"
-
-   sed -i "s|gtk-icon-theme-name=.*|gtk-icon-theme-name=$icon_theme|" "$GTK3_CONFIG"
-   [ -f "$GTK4_CONFIG" ] && sed -i "s|gtk-icon-theme-name=.*|gtk-icon-theme-name=$icon_theme|" "$GTK4_CONFIG"
-
-   # 2. Apply globally via gsettings (for Native Wayland apps)
    gsettings set org.gnome.desktop.interface color-scheme "prefer-$theme"
    gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
    gsettings set org.gnome.desktop.interface icon-theme "$icon_theme"
 
-   # Live change open apps
-   XSETTINGS="$HOME/.config/xsettingsd/xsettingsd.conf"
-   sed -i "s|Net/ThemeName .*|Net/ThemeName \"$gtk_theme\"|" "$XSETTINGS"
-   sed -i "s|Net/IconThemeName .*|Net/IconThemeName \"$icon_theme\"|" "$XSETTINGS"
-   pkill -HUP xsettingsd 2>/dev/null || xsettingsd &
-
    # Background
-   local bg_color=$([ "$theme" = "dark" ] && echo "#1E1E1E" || echo "#F7F5EA")
-   swaymsg output "*" bg "$bg_color" solid_color
+   # swaymsg output "*" bg "$HOME/.config/wallpapers/$theme.jpg" fill
+
+   # local bg_color=$([ "$theme" = "dark" ] && echo "#1E1E1E" || echo "#F7F5EA")
+   # swaymsg output "*" bg "$bg_color" solid_color
 
    # Lazygit
    sed -i "s/^\(  colorScheme:\) .*/\1 $theme/" "$CONFIG_DIR/lazygit/config.yml"
@@ -110,11 +105,10 @@ theme-manager() {
 
    sed -i "s|client.focused .*|client.focused          #181818 #131313 #FFFFFF $indicator   #181818|" "$HOME/.config/sway/config"
 
-   # Reload Sway, Portals, and notify
+   # Reload and notify
    if [ "$1" != "init" ]; then
-      systemctl --user restart xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-gnome
       swaymsg reload
-      dunstify -r 993051 "Theme switched to $theme"
+      notify-send -a 'THEME' -h string:x-canonical-private-synchronous:theme "Theme switched to $theme"
    fi
 }
 
