@@ -11,7 +11,7 @@ set $mod Mod1
 floating_modifier $mod
 
 # Font and scaling
-font pango:Inter Display 14
+font pango:Inter Display 13.5
 output eDP-1 scale 1
 
 # Define popup size and position window
