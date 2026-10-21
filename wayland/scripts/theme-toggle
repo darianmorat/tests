@@ -4,8 +4,6 @@ theme-manager() {
    # Vars
    local CURRENT_THEME_FILE="$HOME/.config/current_theme"
    local CONFIG_DIR="$HOME/.config"
-   local GTK3_CONFIG="$CONFIG_DIR/gtk-3.0/settings.ini"
-   local GTK4_CONFIG="$CONFIG_DIR/gtk-4.0/settings.ini"
 
    # Toggle
    local current=$([ -f "$CURRENT_THEME_FILE" ] && cat "$CURRENT_THEME_FILE" || echo "dark")
