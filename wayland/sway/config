@@ -88,7 +88,7 @@ bindsym $mod+period exec nemo
 bindsym $mod+Shift+d kill
 
 # Lock screen
-bindsym $mod+Shift+l exec swaylock -f -c 000000
+bindsym $mod+Shift+l exec swaylock -f
 
 # App launcher
 bindsym $mod+Shift+Ctrl+u exec wofi --show drun
