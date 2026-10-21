@@ -23,7 +23,7 @@ config.cell_width = 0.90
 config.unicode_version = 14
 
 config.initial_cols = 160
-config.initial_rows = 35
+config.initial_rows = 36
 
 config.underline_thickness = "2px"
 config.cursor_thickness = "1px"
