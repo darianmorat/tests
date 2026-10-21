@@ -27,8 +27,6 @@
 #custom-sep2 {
   padding: 0;
   margin: 0;
-  margin-top: 2px;
-  margin-bottom: 0px;
 }
 
 .modules-left {
@@ -41,40 +39,42 @@
 #workspaces {
   padding-right: 5px;
 }
-#workspaces button {
+#workspaces button,
+#workspaces button.empty {
   color: transparent;
-  background-image: radial-gradient(
-    circle,
-    transparent 3.3px,
-    #ffffff 3.3px,
-    #ffffff 4.3px,
-    transparent 4.8px
-  );
+  font-weight: 500;
+  background-position: 0 0.5px;
   min-width: 20px;
   padding: 0 6px;
+}
+#workspaces button {
+  background-image: radial-gradient(
+    circle,
+    transparent 3.5px,
+    #ffffff 3px,
+    #ffffff 4.2px,
+    transparent 5px
+  );
+}
+#workspaces button.empty {
+  background-image: radial-gradient(
+    circle,
+    transparent 3.5px,
+    #888888 3px,
+    #888888 4.2px,
+    transparent 5px
+  );
 }
 #workspaces button.focused {
   color: #ffffff;
   background-image: none;
 }
-#workspaces button.urgent {
-  color: #ff5555;
-  background-image: none;
-}
-#workspaces button.empty {
-  color: transparent;
-  background-image: radial-gradient(
-    circle,
-    transparent 3.3px,
-    #888888 3.3px,
-    #888888 4.3px,
-    transparent 4.8px
-  );
-  min-width: 20px;
-  padding: 0 6px;
-}
 #workspaces button.empty.focused {
   color: #888888;
+  background-image: none;
+}
+#workspaces button.urgent {
+  color: #ff5555;
   background-image: none;
 }
 
