@@ -3,8 +3,9 @@
 - **sway** - Tiling window manager
 - **waybar** - Status bar
 - **wofi** - Application launcher
-- **wezterm-nightly-bin** - Primary terminal emulator `AUR`
-- **foot** - Fallback terminal emulator
+- **foot** - Primary terminal emulator
+- **foot-terminfo** - Terminfo entries for foot
+- **wezterm** - Fallback terminal emulator
 - **kanata-bin** - Advanced keyboard remapper `Manual`
 
 ## Shell
