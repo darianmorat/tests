@@ -69,7 +69,7 @@ exec waybar -c ~/.config/waybar/tray/config.json -s ~/.config/waybar/tray/style.
 bindsym $mod+Shift+v exec pkill -SIGUSR1 -f 'waybar.*tray/config\.json'
 
 # Launch terminal
-bindsym $mod+l exec wezterm
+bindsym $mod+l exec foot
 
 # Launch File Manager
 bindsym $mod+period exec nemo
