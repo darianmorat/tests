@@ -8,26 +8,18 @@ if wezterm.config_builder then
    config = wezterm.config_builder()
 end
 
-config.font = wezterm.font_with_fallback({
-   {
-      family = "JetBrainsMono Nerd Font Mono",
-      harfbuzz_features = { "zero", "calt=0", "clig=0", "liga=0" },
-   },
-   {
-      family = "Noto Sans CJK SC",
-   },
+config.font = wezterm.font("JetBrainsMono Nerd Font Mono", {
+   harfbuzz_features = { "zero", "calt=0", "clig=0", "liga=0" },
 })
 
 config.font_size = 16.0
-config.cell_width = 0.90
 config.unicode_version = 14
 
-config.initial_cols = 160
-config.initial_rows = 36
+config.initial_cols = 159
+config.initial_rows = 37
 
 config.underline_thickness = "2px"
 config.cursor_thickness = "1px"
-config.freetype_load_target = "Light"
 config.freetype_render_target = "HorizontalLcd"
 config.warn_about_missing_glyphs = false
 
@@ -37,10 +29,10 @@ config.enable_tab_bar = false
 config.enable_scroll_bar = false
 
 config.window_padding = {
-   left = 7,
-   right = 0,
+   left = 6,
+   right = 6,
    top = 2,
-   bottom = 1,
+   bottom = 2,
 }
 
 -- TITLE: Keymaps ------------------------------------------------------------------------
