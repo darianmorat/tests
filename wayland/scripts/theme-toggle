@@ -91,8 +91,13 @@ theme-manager() {
    fi
    echo "$fzf_opts" > ~/.fzfrc
 
-   # WezTerm
-   touch ~/.config/wezterm/wezterm.lua
+   # Foot
+   sed -i "s/^initial-color-theme=.*/initial-color-theme=$theme/" "$CONFIG_DIR/foot/foot.ini"
+   if [ "$theme" = "dark" ]; then
+      pkill -USR1 -x foot
+   else
+      pkill -USR2 -x foot
+   fi
 
    # Indicator for Sway
    if [ "$theme" = "dark" ]; then
