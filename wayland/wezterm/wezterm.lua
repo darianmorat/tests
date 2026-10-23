@@ -8,8 +8,14 @@ if wezterm.config_builder then
    config = wezterm.config_builder()
 end
 
-config.font = wezterm.font("JetBrainsMono Nerd Font Mono", {
-   harfbuzz_features = { "zero", "calt=0", "clig=0", "liga=0" },
+config.font = wezterm.font_with_fallback({
+   {
+      family = "JetBrainsMono Nerd Font Mono",
+      harfbuzz_features = { "zero", "calt=0", "clig=0", "liga=0" },
+   },
+   {
+      family = "Noto Sans CJK SC",
+   },
 })
 
 config.font_size = 16.0
