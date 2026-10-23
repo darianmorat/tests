@@ -1,4 +1,4 @@
-(defcfg 
+(defcfg
    process-unmapped-keys yes
    concurrent-tap-hold yes
 )
@@ -62,7 +62,7 @@
 
 (deflayermap (nav-layer)
    y del
-   u A-S-C-u 
+   u A-S-C-u
    i left
    o right
 
@@ -161,7 +161,7 @@
 
    ___ XX
 )
- 
+
 (deflayermap (rsym-punc)
    n (macro menu S-/ S-/)
 
