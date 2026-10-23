@@ -14,16 +14,6 @@ floating_modifier $mod
 font pango:Inter Display 13.5
 output eDP-1 scale 1
 
-# Define popup size and position window
-set $popup resize set 1920 1051, move position center
-
-# Fullscreen dialogs and popups
-for_window [window_type="dialog"] $popup
-for_window [window_type="utility"] $popup
-
-for_window [class="wezterm-impala"] floating enable, $popup
-for_window [class="wezterm-bluetui"] floating enable, $popup
-
 # Window options
 title_align center
 smart_borders on
@@ -128,7 +118,7 @@ bindsym $mod+Shift+x focus mode_toggle
 
 # Scratchpad
 bindsym $mod+Shift+c move scratchpad
-bindsym $mod+c scratchpad show, $popup
+bindsym $mod+c scratchpad show
 
 # Focus container parent/child
 bindsym $mod+Shift+comma focus parent
