@@ -84,10 +84,10 @@
 ## Fonts
 
 - **inter-font** - Typeface for interfaces
+- **noto-fonts** - Google fonts
 - **noto-fonts-cjk** - CJK character support
 - **noto-fonts-emoji** - Emoji support
-- **noto-fonts-lite** - Google font collection `AUR`
-- **ttf-ms-fonts** - Microsoft core fonts `AUR`
+- **noto-fonts-extra** - Additional variants
 - **ttf-dejavu** - Unicode fallback font
 - **ttf-jetbrains-mono-nerd** - Developer typeface
 
