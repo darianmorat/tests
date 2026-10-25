@@ -1,118 +1,94 @@
 #!/usr/bin/zsh
 
-theme-manager() {
-   # Vars
-   local CURRENT_THEME_FILE="$HOME/.config/current_theme"
-   local CONFIG_DIR="$HOME/.config"
+# Toggle
+current=$([ -f "$HOME/.config/current_theme" ] && cat "$HOME/.config/current_theme" || echo "dark")
+if [ "$1" = "init" ]; then
+   theme="$current"
+else
+   theme=$([ "$current" = "dark" ] && echo "light" || echo "dark")
+   echo "$theme" > "$HOME/.config/current_theme"
+fi
 
-   # Toggle
-   local current=$([ -f "$CURRENT_THEME_FILE" ] && cat "$CURRENT_THEME_FILE" || echo "dark")
-   if [ "$1" = "init" ]; then
-      local theme="$current"
-   else
-      local theme=$([ "$current" = "dark" ] && echo "light" || echo "dark")
-      echo "$theme" > "$CURRENT_THEME_FILE"
-   fi
+# Background
+old=$(pgrep -x swaybg)
+swaybg -o '*' -i "$HOME/.config/wallpapers/$theme.jpg" -m fill &!
+sleep 0.2
+[ -n "$old" ] && kill ${(f)old}
 
-   # Save and export
-   export THEME_MODE="$theme"
+# Init
+[ "$1" = "init" ] && exit 0
 
-   # GTK Theme
-   local gtk_theme icon_theme
-   if [ "$theme" = "dark" ]; then
-      gtk_theme="Adwaita-dark"
-      icon_theme="Papirus-Dark"
-   else
-      gtk_theme="Adwaita"
-      icon_theme="Papirus-Light"
-   fi
+# GTK Theme
+if [ "$theme" = "dark" ]; then
+   gtk_theme="Adwaita-dark"
+   icon_theme="Papirus-Dark"
+else
+   gtk_theme="Adwaita"
+   icon_theme="Papirus-Light"
+fi
 
-   gsettings set org.gnome.desktop.interface color-scheme "prefer-$theme"
-   gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
-   gsettings set org.gnome.desktop.interface icon-theme "$icon_theme"
+gsettings set org.gnome.desktop.interface color-scheme "prefer-$theme"
+gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
+gsettings set org.gnome.desktop.interface icon-theme "$icon_theme"
 
-   # Background
-   # swaymsg output "*" bg "$HOME/.config/wallpapers/$theme.jpg" fill
+# Lazygit
+sed -i "s/^\(  colorScheme:\) .*/\1 $theme/" "$HOME/.config/lazygit/config.yml"
 
-   # local bg_color=$([ "$theme" = "dark" ] && echo "#1E1E1E" || echo "#F7F5EA")
-   # swaymsg output "*" bg "$bg_color" solid_color
+# Delta
+git config --global delta.features "$theme"
 
-   # Lazygit
-   sed -i "s/^\(  colorScheme:\) .*/\1 $theme/" "$CONFIG_DIR/lazygit/config.yml"
+# FZF
+if [ "$theme" = "dark" ]; then
+   fzf_opts="--ansi
+   --layout=reverse
+   --border=sharp
+   --preview-window=border-sharp
+   --info=inline-right
+   --highlight-line
+   --color=scrollbar:#1E1E1E
+   --color=fg:#D6CFC4
+   --color=fg+:#E6E3DE
+   --color=bg:#1E1E1E
+   --color=bg+:#303030
+   --color=gutter:#303030
+   --color=prompt:#579DD4
+   --color=marker:#B55353
+   --color=pointer:#B55353
+   --color=header:#D19F66
+   --color=info:#575757
+   --color=hl:#72BA62
+   --color=hl+:#72BA62
+   --color=query:#D6CFC4
+   --color=border:#5F5F5F"
+else
+   fzf_opts="--ansi
+   --layout=reverse
+   --border=sharp
+   --preview-window=border-sharp
+   --info=inline-right
+   --highlight-line
+   --color=scrollbar:#F7F5EA
+   --color=fg:#070707
+   --color=fg+:#000000
+   --color=bg:#F7F5EA
+   --color=bg+:#C9C9BF
+   --color=gutter:#C9C9BF
+   --color=prompt:#0F5289
+   --color=marker:#AD4B4B
+   --color=pointer:#AD4B4B
+   --color=header:#AE5F05
+   --color=info:#707070
+   --color=hl:#006C00
+   --color=hl+:#006C00
+   --color=query:#101010
+   --color=border:#7F7F7F"
+fi
+echo "$fzf_opts" > "$HOME/.fzfrc"
 
-   # Delta
-   git config --global delta.features "$theme"
-
-   # FZF
-   if [ "$theme" = "dark" ]; then
-      fzf_opts="--ansi
-      --layout=reverse
-      --border=sharp
-      --preview-window=border-sharp
-      --info=inline-right
-      --highlight-line
-      --color=scrollbar:#1E1E1E
-      --color=fg:#D6CFC4
-      --color=fg+:#E6E3DE
-      --color=bg:#1E1E1E
-      --color=bg+:#303030
-      --color=gutter:#303030
-      --color=prompt:#579DD4
-      --color=marker:#B55353
-      --color=pointer:#B55353
-      --color=header:#D19F66
-      --color=info:#575757
-      --color=hl:#72BA62
-      --color=hl+:#72BA62
-      --color=query:#D6CFC4
-      --color=border:#5F5F5F"
-   else
-      fzf_opts="--ansi
-      --layout=reverse
-      --border=sharp
-      --preview-window=border-sharp
-      --info=inline-right
-      --highlight-line
-      --color=scrollbar:#F7F5EA
-      --color=fg:#070707
-      --color=fg+:#000000
-      --color=bg:#F7F5EA
-      --color=bg+:#C9C9BF
-      --color=gutter:#C9C9BF
-      --color=prompt:#0F5289
-      --color=marker:#AD4B4B
-      --color=pointer:#AD4B4B
-      --color=header:#AE5F05
-      --color=info:#707070
-      --color=hl:#006C00
-      --color=hl+:#006C00
-      --color=query:#101010
-      --color=border:#7F7F7F"
-   fi
-   echo "$fzf_opts" > ~/.fzfrc
-
-   # Foot
-   sed -i "s/^initial-color-theme=.*/initial-color-theme=$theme/" "$CONFIG_DIR/foot/foot.ini"
-   if [ "$theme" = "dark" ]; then
-      pkill -USR1 -x foot
-   else
-      pkill -USR2 -x foot
-   fi
-
-   # Indicator for Sway
-   if [ "$theme" = "dark" ]; then
-      indicator="#FFFFFF"
-   else
-      indicator="#2E9EF4"
-   fi
-
-   sed -i "s|client.focused .*|client.focused          #181818 #131313 #FFFFFF $indicator   #181818|" "$HOME/.config/sway/config"
-
-   # Reload and notify
-   if [ "$1" != "init" ]; then
-      swaymsg reload
-      notify-send -a 'THEME' -h string:x-canonical-private-synchronous:theme "Theme switched to $theme"
-   fi
-}
-
-theme-manager "$@"
+# Foot
+sed -i "s/^initial-color-theme=.*/initial-color-theme=$theme/" "$HOME/.config/foot/foot.ini"
+if [ "$theme" = "dark" ]; then
+   pkill -USR1 -x foot
+else
+   pkill -USR2 -x foot
+fi
