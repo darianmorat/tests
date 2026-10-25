@@ -39,7 +39,7 @@ exec swayidle -w \
 
 # Theming
 exec_always ~/.scripts/theme-toggle init
-output "*" bg "$HOME/.config/wallpapers/wallhaven-47odme.jpg" fill
+output "*" bg "$HOME/.config/wallpapers/wallhaven-47odme2.jpg" fill
 
 # Start applications
 exec gammastep
