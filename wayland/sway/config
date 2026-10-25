@@ -26,11 +26,11 @@ default_floating_border normal 1
 seat * hide_cursor 5000
 seat * hide_cursor when-typing enable
 
-# Class                 border  backgr. text    indicator child_border
-client.focused          #181818 #131313 #FFFFFF #FFFFFF   #181818
-client.focused_inactive #181818 #131313 #FFFFFF #181818   #181818
-client.unfocused        #181818 #131313 #686868 #181818   #181818
-client.urgent           #161616 #801717 #FFFFFF #801717   #801717
+# Title bar style
+client.focused #181818 #131313 #FFFFFF #FFFFFF #181818
+client.focused_inactive #181818 #131313 #FFFFFF #181818 #181818
+client.unfocused #181818 #131313 #686868 #181818 #181818
+client.urgent #161616 #801717 #FFFFFF #801717 #801717
 
 # Autolock after 15 minutes.
 exec swayidle -w \
@@ -38,13 +38,13 @@ exec swayidle -w \
     before-sleep 'swaylock -f -c 000000'
 
 # Theming
-exec_always ~/.scripts/theme-toggle init
-output "*" bg "$HOME/.config/wallpapers/wallhaven-47odme2.jpg" fill
+exec ~/.scripts/theme-toggle init
 
 # Start applications
 exec gammastep
 exec mako
 exec helium-browser
+exec waybar
 
 # Volume controls
 bindsym XF86AudioRaiseVolume exec "pamixer -i 5 && notify-send -a 'OSD' -h string:x-canonical-private-synchronous:osd -h int:value:$(pamixer --get-volume) 'Volume'"
@@ -59,7 +59,7 @@ bindsym XF86MonBrightnessDown exec "brightnessctl set 10%- && notify-send -a 'OS
 bindsym XF86AudioPlay exec "playerctl play-pause"
 
 # Print assignation
-bindsym Print exec --no-startup-id "QT_SCALE_FACTOR=1.20 flameshot gui"
+bindsym Print exec "QT_SCALE_FACTOR=1.20 flameshot gui"
 
 # Theme toggle
 bindsym $mod+Shift+s exec ~/.scripts/theme-toggle
@@ -176,9 +176,4 @@ input "10182:480:GXTP7863:00_27C6:01E0_Touchpad" {
 input "10182:480:GXTP7863:00_27C6:01E0_Mouse" {
     natural_scroll enabled
     scroll_factor 1.0
-}
-
-# Default status bar
-bar {
-    swaybar_command waybar
 }
