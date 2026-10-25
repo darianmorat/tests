@@ -1,3 +1,2 @@
 [options]
-scaling_mode = shrink
-title_text = [${imv_current_index}/${imv_file_count}] $(basename $imv_current_file) - ${imv_width}x${imv_height}
+title_text = [${imv_current_index}/${imv_file_count}] [${imv_width}x${imv_height}] [${imv_scale}%] - $(basename $imv_current_file) - [${imv_scaling_mode}]
