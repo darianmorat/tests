@@ -73,7 +73,7 @@
 - **ffmpegthumbnailer** - Video thumbnail generator
 - **mpv** - Media player
 - **quodlibet** - Music player and library manager
-- **qimgv-git** - Image viewer `AUR`
+- **imv** - Image viewer
 - **flameshot** - Screenshot capture utility
 - **gimp** - Image editor
 - **hyprpicker** - Color picker
