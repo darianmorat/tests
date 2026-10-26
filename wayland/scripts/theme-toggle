@@ -85,6 +85,9 @@ else
 fi
 echo "$fzf_opts" > "$HOME/.fzfrc"
 
+# Neovim
+pkill -USR1 -x nvim
+
 # Foot
 sed -i "s/^initial-color-theme=.*/initial-color-theme=$theme/" "$HOME/.config/foot/foot.ini"
 if [ "$theme" = "dark" ]; then
