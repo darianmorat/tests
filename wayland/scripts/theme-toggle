@@ -18,6 +18,9 @@ sleep 0.2
 # Rofi
 ln -sf "$HOME/.config/rofi/styles-$theme.rasi" "$HOME/.config/rofi/styles.rasi"
 
+# Mako
+ln -sf "$HOME/.config/mako/$theme.conf" "$HOME/.config/mako/config"
+
 # Init
 [ "$1" = "init" ] && exit 0
 
@@ -48,10 +51,10 @@ if [ "$theme" = "dark" ]; then
    --preview-window=border-sharp
    --info=inline-right
    --highlight-line
-   --color=scrollbar:#1e1e1e
+   --color=scrollbar:#1d1d1d
    --color=fg:#d6cfc4
    --color=fg+:#e6e3de
-   --color=bg:#1e1e1e
+   --color=bg:#1d1d1d
    --color=bg+:#303030
    --color=gutter:#303030
    --color=prompt:#579dd4
@@ -98,3 +101,10 @@ if [ "$theme" = "dark" ]; then
 else
    pkill -USR2 -x foot
 fi
+
+# Mako
+if pgrep -x mako > /dev/null; then
+   pkill -x mako
+   mako &!
+fi
+
