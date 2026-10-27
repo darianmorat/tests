@@ -34,8 +34,8 @@ client.urgent #161616 #801717 #FFFFFF #801717 #801717
 
 # Autolock after 15 minutes.
 exec swayidle -w \
-    timeout 900 'swaylock -f -c 000000' \
-    before-sleep 'swaylock -f -c 000000'
+    timeout 900 'swaylock -f' \
+    before-sleep 'swaylock -f'
 
 # Theming
 exec ~/.scripts/theme-toggle init
@@ -62,7 +62,7 @@ bindsym XF86AudioPlay exec "playerctl play-pause"
 bindsym Print exec "QT_SCALE_FACTOR=1.20 flameshot gui"
 
 # Theme toggle
-bindsym $mod+Shift+s exec ~/.scripts/theme-toggle
+bindsym $mod+Shift+period exec ~/.scripts/theme-toggle
 
 # Toggle tray
 exec waybar -c ~/.config/waybar/tray/config.json -s ~/.config/waybar/tray/style.css
@@ -81,13 +81,11 @@ bindsym $mod+Shift+d kill
 bindsym $mod+Shift+l exec swaylock -f
 
 # App launcher
-bindsym $mod+Shift+Ctrl+u exec wofi --show drun
+bindsym $mod+Shift+Ctrl+u exec rofi -show drun
 
 # Clipboard history
 exec wl-paste --watch cliphist store
-
-# Clipboard menu
-bindsym $mod+Shift+Ctrl+m exec cliphist list | wofi --dmenu | cliphist decode | wl-copy
+bindsym $mod+Shift+Ctrl+m exec cliphist list | rofi -dmenu -p Clipboard | cliphist decode | wl-copy
 
 # Change focus
 bindsym $mod+i focus left
@@ -108,7 +106,6 @@ bindsym $mod+v split toggle
 bindsym $mod+Shift+f fullscreen toggle
 
 # Change layout
-bindsym $mod+s layout stacking
 bindsym $mod+d layout tabbed
 bindsym $mod+f layout toggle split
 
@@ -119,10 +116,6 @@ bindsym $mod+Shift+x focus mode_toggle
 # Scratchpad
 bindsym $mod+Shift+c move scratchpad
 bindsym $mod+c scratchpad show
-
-# Focus container parent/child
-bindsym $mod+Shift+comma focus parent
-bindsym $mod+Shift+period focus child
 
 # Workspaces
 set $ws1 "1"
